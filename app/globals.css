@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@plugin "daisyui" {
+  themes: retro --default, dracula --prefersdark;
+}
 
 :root {
   --background: #ffffff;
