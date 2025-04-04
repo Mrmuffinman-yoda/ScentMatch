@@ -1,5 +1,8 @@
 "use client";
+import FragranceList from "./components/FragranceList";
+import Hero from "./home/Hero";
 import { useEffect, useState } from "react";
+import BoldBox from "./components/general/BoldBox";
 
 // Define the interface for the API response
 interface User {
@@ -31,6 +34,9 @@ export default function Home() {
 
   return (
     <div>
+      <Hero />
+      <BoldBox />
+      <FragranceList />
       <h1>Welcome to the Next.js App with FastAPI!</h1>
       {data ? (
         <div>
