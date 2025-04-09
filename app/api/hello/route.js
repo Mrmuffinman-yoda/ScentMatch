@@ -1,4 +1,3 @@
-// filepath: e:\ScentMatch\ui\app\api\hello\route.js
 export async function GET() {
   try {
     // Make a request to the FastAPI server
@@ -14,7 +13,7 @@ export async function GET() {
     const data = await fastapiResponse.json();
 
     // Validate the structure of the response
-    if (!data.user || !data.user.username || !data.user.email) {
+    if (!data.username || !data.email) {
       throw new Error("Invalid API response structure");
     }
 

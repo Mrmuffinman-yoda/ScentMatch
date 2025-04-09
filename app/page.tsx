@@ -5,13 +5,9 @@ import { useEffect, useState } from "react";
 import BoldBox from "./components/general/BoldBox";
 
 // Define the interface for the API response
-interface User {
+interface ApiResponse {
   username: string;
   email: string;
-}
-
-interface ApiResponse {
-  user: User;
   image_url: string;
 }
 
@@ -42,12 +38,12 @@ export default function Home() {
         <div>
           <h2>User Information</h2>
           <p>
-            <strong>Username:</strong> {data.user.username}
+            <strong>Username:</strong> {data.username}
           </p>
           <p>
-            <strong>Email:</strong> {data.user.email}
+            <strong>Email:</strong> {data.email}
           </p>
-          <img src={data.image_url} alt={`${data.user.username}'s profile`} />
+          <img src={data.image_url} alt={`${data.username}'s profile`} />
         </div>
       ) : (
         <p>Loading data...</p>
