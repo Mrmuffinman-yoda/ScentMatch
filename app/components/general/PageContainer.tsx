@@ -5,7 +5,7 @@ interface Props {
   maxWidth?: string; // Optional: allow custom max width
 }
 
-const PageContainer = ({ children, maxWidth = "max-w-4xl" }: Props) => {
+const PageContainer = ({ children, maxWidth = "max-w-6xl" }: Props) => {
   return <div className={`w-full ${maxWidth} mx-auto`}>{children}</div>;
 };
 

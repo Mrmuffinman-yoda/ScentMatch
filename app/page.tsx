@@ -4,6 +4,8 @@ import Hero from "./components/home/Hero";
 import { useEffect, useState } from "react";
 import BoldBox from "./components/general/BoldBox";
 
+import PageContainer from "./components/general/PageContainer";
+
 // Define the interface for the API response
 interface ApiResponse {
   username: string;
@@ -30,9 +32,15 @@ export default function Home() {
 
   return (
     <div>
-      <Hero />
-      <BoldBox />
-      <FragranceList />
+      <PageContainer>
+        <Hero />
+      </PageContainer>
+      <PageContainer>
+        <BoldBox />
+      </PageContainer>
+      <PageContainer>
+        <FragranceList />
+      </PageContainer>
       <h1>Welcome to the Next.js App with FastAPI!</h1>
       {data ? (
         <div>

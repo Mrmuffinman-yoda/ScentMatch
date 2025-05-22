@@ -4,7 +4,7 @@ import HouseHead from "@/app/components/house/HouseHead";
 import { DesignerPill, ExpensivePill } from "@/app/components/house/Infopills";
 import { usePathname } from "next/navigation";
 import TopThree from "@/app/components/house/TopThree";
-import PageContainer from "@/app/components/core/PageContainer";
+import PageContainer from "@/app/components/general/PageContainer";
 const page = () => {
   const pathname = usePathname();
   const pathSegments = pathname.split("/");
