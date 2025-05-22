@@ -19,7 +19,6 @@ const Infopills = ({ color, children }: InfopillsProps) => {
   return <div className={colorClasses[color]}>{children}</div>;
 };
 
-// Example: specific pills
 export const DesignerPill = () => <Infopills color="p"> Designer </Infopills>;
 
 export const ClonePill = () => <Infopills color="i">Clone</Infopills>;
