@@ -5,7 +5,7 @@ const colorClasses: { [key: string]: string } = {
   s: "badge badge-secondary",
   a: "badge badge-accent",
   i: "badge badge-info",
-  s: "badge badge-success",
+  su: "badge badge-success",
   w: "badge badge-warning",
   e: "badge badge-error",
 };
@@ -25,6 +25,6 @@ export const ClonePill = () => <Infopills color="i">Clone</Infopills>;
 
 export const NichePill = () => <Infopills color="a">Niche</Infopills>;
 
-export const BudgetPill = () => <Infopills color="s">Budget</Infopills>;
+export const BudgetPill = () => <Infopills color="su">Budget</Infopills>;
 
 export const ExpensivePill = () => <Infopills color="e">Expensive</Infopills>;
