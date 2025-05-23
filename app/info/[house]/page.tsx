@@ -15,7 +15,7 @@ const Page = () => {
   */
 
   const d =
-    "Founded in 1946, Dior is renowned for its luxurious and innovative fragrances. Dior is an expensive house to buy from lol.";
+    "Founded in 1946, Dior is renowned for its luxurious and innovative fragrances";
 
   return (
     <>

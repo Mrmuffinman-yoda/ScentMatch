@@ -11,7 +11,7 @@ const HouseHead = ({ house_name, description, logo_url, children }: Props) => {
   return (
     <div className="card lg:card-side bg-base-200 shadow-sm h-100 p-6">
       <figure>
-        <img className="h-12" src={logo_url} alt="Album" />
+        <img className="h-12" src={logo_url} alt={`Logo of ${house_name}`} />
       </figure>
       <div className="card-body">
         <h1 className="card-title text-3xl text-primary">{house_name}</h1>
