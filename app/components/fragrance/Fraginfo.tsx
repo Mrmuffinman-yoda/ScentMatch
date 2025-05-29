@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-interface Note {
+interface Accords {
   name: string;
   percent: number; // 0-100
 }
