@@ -4,6 +4,7 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import FragInfo from "@/app/components/fragrance/Fraginfo";
 import PageContainer from "@/app/components/general/PageContainer";
+import TopThree from "@/app/components/house/TopThree";
 const Page = () => {
   const pathname = usePathname();
 
@@ -29,6 +30,14 @@ const Page = () => {
             { name: "Lavender", percent: 5 },
           ]}
         />
+      </PageContainer>
+
+      <PageContainer>
+        <h1 className="text-4xl font-bold mb-2 text-primary text-center">
+          {" "}
+          Top three clones{" "}
+        </h1>
+        <TopThree></TopThree>
       </PageContainer>
     </div>
   );

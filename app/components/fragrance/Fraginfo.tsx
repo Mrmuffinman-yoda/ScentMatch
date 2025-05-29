@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { motion } from "motion/react";
 
 interface Accords {
   name: string;
@@ -89,9 +90,11 @@ const FragInfo: React.FC<FragInfoProps> = ({
                   <span>{accord.percent}%</span>
                 </div>
                 <div className="w-full bg-gray-300 rounded h-3">
-                  <div
-                    className="bg-primary h-3 rounded"
-                    style={{ width: `${accord.percent}%` }}
+                  <motion.div
+                    className="bg-warning h-3 rounded"
+                    initial={{ width: 0 }}
+                    animate={{ width: `${accord.percent}%` }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
                   />
                 </div>
               </div>

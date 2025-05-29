@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <div className="pt-5">
       <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content p-10">
-        <PageContainer>
+        <PageContainer disableAnim={true}>
           <aside>
             <svg
               width="50"

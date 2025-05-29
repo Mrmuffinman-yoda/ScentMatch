@@ -1,4 +1,6 @@
+"use client";
 import React from "react";
+import { motion } from "motion/react";
 
 interface Props {
   title: string;
@@ -9,27 +11,33 @@ interface Props {
 
 const FragranceCard = ({ title, description, isNew, children }: Props) => {
   return (
-    <div>
-      <div className="card bg-base-100 w-90 shadow-sm">
-        <figure>
-          <img
-            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-            alt="Shoes"
-          />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">
-            {title}
-            {isNew && <div className="badge badge-secondary">NEW</div>}
-          </h2>
-          <p>{description}</p>
-          <button className="btn btn-soft btn-primary w-auto self-end">
-            View
-          </button>
-          <div className="card-actions justify-end">{children}</div>
-        </div>
+    <motion.div
+      whileHover={{
+        scale: 1.1,
+        boxShadow: "0 8px 32px rgba(0,0,0,0.15)",
+        y: -4,
+      }}
+      transition={{ type: "tween", stiffness: 300, damping: 20 }}
+      className="card bg-base-100 w-83 shadow-sm cursor-pointer"
+    >
+      <figure>
+        <img
+          src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+          alt="Shoes"
+        />
+      </figure>
+      <div className="card-body">
+        <h2 className="card-title">
+          {title}
+          {isNew && <div className="badge badge-secondary">NEW</div>}
+        </h2>
+        <p>{description}</p>
+        <button className="btn btn-soft btn-primary w-auto self-end">
+          View
+        </button>
+        <div className="card-actions justify-end">{children}</div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
