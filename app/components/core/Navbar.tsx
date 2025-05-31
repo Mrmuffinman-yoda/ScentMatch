@@ -4,13 +4,14 @@ const Navbar = () => {
   return (
     <div>
       <div data-theme="" className="navbar bg-base-100 shadow-sm">
-        <img
-          className="w-20"
-          src="/api/minio/scentmatch/core/scentmatch.png"
-          alt="ScentMatch Logo"
-        />
         <div className="flex-1">
-          <strong className="text-xl pl-2">ScentMatch</strong>
+          <a href="/">
+            <img
+              className="w-20"
+              src="/api/minio/scentmatch/core/logoWithText.png"
+              alt="ScentMatch"
+            />
+          </a>
         </div>
         <div className="flex gap-2">
           <input
