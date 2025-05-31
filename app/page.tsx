@@ -41,21 +41,6 @@ export default function Home() {
       <PageContainer>
         <FragranceList />
       </PageContainer>
-      <h1>Welcome to the Next.js App with FastAPI!</h1>
-      {data ? (
-        <div>
-          <h2>User Information</h2>
-          <p>
-            <strong>Username:</strong> {data.username}
-          </p>
-          <p>
-            <strong>Email:</strong> {data.email}
-          </p>
-          <img src={data.image_url} alt={`${data.username}'s profile`} />
-        </div>
-      ) : (
-        <p>Loading data...</p>
-      )}
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import FragranceCard from "./FragranceCard";
+import FragranceCard from "../general/FragranceCard";
 import { DesignerPill, ExpensivePill } from "./Infopills";
 
 const TopThree = () => {

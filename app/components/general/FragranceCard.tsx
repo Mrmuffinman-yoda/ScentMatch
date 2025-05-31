@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { motion } from "motion/react";
 
@@ -21,10 +20,7 @@ const FragranceCard = ({ title, description, isNew, children }: Props) => {
       className="card bg-base-100 w-83 shadow-sm cursor-pointer"
     >
       <figure>
-        <img
-          src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" // TODO : replace this image with https://placehold.co/1920x1080
-          alt="Shoes"
-        />
+        <img src="/api/minio/scentmatch/core/noimg.png" alt="Shoes" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">

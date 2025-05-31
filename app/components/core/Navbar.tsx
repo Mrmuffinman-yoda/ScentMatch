@@ -4,6 +4,11 @@ const Navbar = () => {
   return (
     <div>
       <div data-theme="" className="navbar bg-base-100 shadow-sm">
+        <img
+          className="w-20"
+          src="/api/minio/scentmatch/core/scentmatch.png"
+          alt="ScentMatch Logo"
+        />
         <div className="flex-1">
           <strong className="text-xl pl-2">ScentMatch</strong>
         </div>
@@ -22,7 +27,7 @@ const Navbar = () => {
               <div className="w-10 rounded-full">
                 <img
                   alt="Tailwind CSS Navbar component"
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                  src="/api/minio/scentmatch/core/noprofile.png"
                 />
               </div>
             </div>
