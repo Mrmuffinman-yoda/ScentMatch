@@ -4,7 +4,7 @@ const Hero = () => {
   return (
     <div data-theme="" className="hero bg-base-200 relative overflow-hidden">
       <video
-        src="/api/minio/scentmatch/myself_hero_video.mp4"
+        src="/api/minio-video/scentmatch/myself_hero_video.mp4"
         autoPlay
         loop
         muted
