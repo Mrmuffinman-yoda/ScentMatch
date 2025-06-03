@@ -16,9 +16,9 @@ const FragranceList = () => {
             />
           </div>
           <div>
-            <div>Dio Lupa</div>
+            <div>Turathi Electric</div>
             <div className="text-xs uppercase font-semibold opacity-60">
-              Remaining Reason
+              Afnan
             </div>
           </div>
         </li>
@@ -31,9 +31,9 @@ const FragranceList = () => {
             />
           </div>
           <div>
-            <div>Ellie Beilish</div>
+            <div>Hawas Elixir</div>
             <div className="text-xs uppercase font-semibold opacity-60">
-              Bears of a fever
+              Rasasi
             </div>
           </div>
         </li>
@@ -46,9 +46,9 @@ const FragranceList = () => {
             />
           </div>
           <div>
-            <div>Sabrino Gardener</div>
+            <div>Art of universe</div>
             <div className="text-xs uppercase font-semibold opacity-60">
-              Cappuccino
+              Lattafa
             </div>
           </div>
         </li>

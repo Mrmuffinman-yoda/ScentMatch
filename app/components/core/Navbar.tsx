@@ -4,9 +4,9 @@ import PageContainer from "../general/PageContainer";
 const Navbar = () => {
   return (
     <div>
-      <PageContainer pb={2}>
+      <div className="w-full max-w-7xl mx-auto">
         <div data-theme="" className="navbar bg-base-100 shadow-sm">
-          <div className="flex-1">
+          <div className="flex-1 ">
             <a href="/">
               <img
                 className="w-20"
@@ -54,7 +54,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-      </PageContainer>
+      </div>
     </div>
   );
 };

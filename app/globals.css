@@ -1,10 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@400;700&display=swap');
-h1, h2, h3 {
-  font-family: 'Playfair Display', serif;
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Outfit:wght@300;400;500;600&display=swap');
+h1,
+h2,
+h3 {
+  font-family: 'Cormorant Garamond', serif;
 }
 
-body, p, span {
-  font-family: 'Montserrat', sans-serif;
+body,
+p,
+span {
+  font-family: 'Outfit', sans-serif;
 }
 @import "tailwindcss";
 @plugin "daisyui" {

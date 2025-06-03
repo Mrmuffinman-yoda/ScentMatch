@@ -13,7 +13,6 @@ const PageContainer = ({
   children,
   maxWidth = "max-w-7xl",
   disableAnim = false,
-  pb = 10,
 }: Props) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { margin: "-100px" });
@@ -29,7 +28,7 @@ const PageContainer = ({
   return (
     <motion.div
       ref={ref}
-      className={`w-full ${maxWidth} mx-auto pb-${pb}`}
+      className={`w-full ${maxWidth} mx-auto pb-10`}
       initial={{ opacity: 0, scale: 0.95 }}
       animate={
         isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }

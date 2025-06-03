@@ -28,6 +28,11 @@ export default function RootLayout({
     <html data-theme="luxury" lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        style={{
+          backgroundImage: "url('api/minio/scentmatch/core/tile.png')",
+          backgroundSize: "500px auto",
+          backgroundAttachment: "fixed",
+        }}
       >
         <Navbar />
         {children}

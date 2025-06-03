@@ -24,7 +24,7 @@ const Page = () => {
   const fragrance = pathSegments[3]; // Extract the 'fragrance' segment
 
   const slug = `${house}-${fragrance}`;
-  const [data, setData] = useState<ApiResponse | null>(null);
+  const [data, setData] = useState<ApiResponse | null | undefined>(undefined);
   // call home
   useEffect(() => {
     async function fetchData() {
@@ -41,29 +41,22 @@ const Page = () => {
         console.error("Error fetching data from FastAPI:", error);
       }
     }
-
+    setData(undefined); // set loading state
     fetchData();
-  }, []);
+  }, [slug]);
 
-  return (
-    <div>
-      <h1>House: {house}</h1>
-      <h2>Fragrance: {fragrance}</h2>
-      <PageContainer>
-        {data ? (
-          <FragInfo
-            name={data.name}
-            description={data.description}
-            image={data.image_url}
-            accords={[
-              { name: "Iris", percent: 45 },
-              { name: "Amber", percent: 25 },
-              { name: "Vetiver", percent: 15 },
-              { name: "Cedar", percent: 10 },
-              { name: "Lavender", percent: 5 },
-            ]}
-          />
-        ) : (
+  if (data === undefined) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <span className="loading loading-infinity loading-xl"></span>
+      </div>
+    );
+  }
+
+  if (data === null) {
+    return (
+      <div>
+        <PageContainer>
           <div className="text-center py-10">
             <h2 className="text-2xl font-bold mb-4">
               We're hard at work adding this fragrance!
@@ -73,15 +66,35 @@ const Page = () => {
               back soon.
             </p>
           </div>
-        )}
+        </PageContainer>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <h1>House: {house}</h1>
+      <h2>Fragrance: {fragrance}</h2>
+      <PageContainer>
+        <FragInfo
+          name={data.name}
+          description={data.description}
+          image={data.image_url}
+          accords={[
+            { name: "Iris", percent: 45 },
+            { name: "Amber", percent: 25 },
+            { name: "Vetiver", percent: 15 },
+            { name: "Cedar", percent: 10 },
+            { name: "Lavender", percent: 5 },
+          ]}
+        />
       </PageContainer>
 
       <PageContainer>
         <h1 className="text-4xl font-bold mb-2 text-primary text-center">
-          {" "}
-          Top three clones{" "}
+          Top three clones
         </h1>
-        <TopThree></TopThree>
+        <TopThree />
       </PageContainer>
     </div>
   );

@@ -8,13 +8,17 @@ const BoldBox = () => {
           <div>
             <div className="max-w-lg md:max-w-none">
               <h2 className="text-2xl font-semibold sm:text-3xl">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Fragrance Hunting Made Simple
               </h2>
 
               <p className="mt-4 text-primary">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-                doloremque saepe architecto maiores repudiandae amet perferendis
-                repellendus, reprehenderit voluptas sequi.
+                Finding your perfect scent shouldn’t be a guessing game. With
+                thousands of options out there, it’s easy to feel overwhelmed.
+                That’s why we built a recommendation system powered by real
+                community data and smart algorithms — so you get suggestions
+                tailored to your unique taste. Whether you're into fresh
+                aquatics, sweet gourmands, or smoky ouds, we'll help you find
+                your next signature fragrance without the hassle.
               </p>
             </div>
           </div>
