@@ -14,7 +14,7 @@ interface ApiResponse {
 }
 
 export default function Home() {
-  const [data, setData] = useState<ApiResponse | null>(null);
+  const [, setData] = useState<ApiResponse | null>(null); // Ignore unused var warning
 
   useEffect(() => {
     async function fetchData() {

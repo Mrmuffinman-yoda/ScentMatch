@@ -59,7 +59,7 @@ const Page = () => {
         <PageContainer>
           <div className="text-center py-10">
             <h2 className="text-2xl font-bold mb-4">
-              We're hard at work adding this fragrance!
+              We&apos;re hard at work adding this fragrance!
             </h2>
             <p>
               Sorry, this fragrance is currently not available. Please check

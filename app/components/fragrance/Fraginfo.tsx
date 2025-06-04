@@ -30,7 +30,7 @@ const defaultAccords: Accords[] = [
 
 const FragInfo: React.FC<FragInfoProps> = ({
   name,
-  image,
+  // image,
   description,
   accords = defaultAccords,
 }) => {

@@ -1,5 +1,5 @@
 import React from "react";
-import PageContainer from "../general/PageContainer";
+import Link from "next/link";
 
 const Navbar = () => {
   return (
@@ -7,13 +7,13 @@ const Navbar = () => {
       <div className="w-full max-w-7xl mx-auto">
         <div data-theme="" className="navbar bg-base-100 shadow-sm">
           <div className="flex-1 ">
-            <a href="/">
+            <Link href="/">
               <img
                 className="w-20"
                 src="/api/minio/scentmatch/core/logoWithText.png"
                 alt="ScentMatch"
               />
-            </a>
+            </Link>
           </div>
           <div className="flex gap-2">
             <input

@@ -1,5 +1,5 @@
 # Ignore build output
-.next
+# .next
 
 # Ignore logs
 *.log
@@ -25,4 +25,4 @@ yarn-debug.log
 yarn-error.log
 
 # Ignore public output (if you only want to copy from build)
-public
+# public

@@ -12,13 +12,13 @@ const BoldBox = () => {
               </h2>
 
               <p className="mt-4 text-primary">
-                Finding your perfect scent shouldn’t be a guessing game. With
-                thousands of options out there, it’s easy to feel overwhelmed.
-                That’s why we built a recommendation system powered by real
-                community data and smart algorithms — so you get suggestions
-                tailored to your unique taste. Whether you're into fresh
-                aquatics, sweet gourmands, or smoky ouds, we'll help you find
-                your next signature fragrance without the hassle.
+                Finding your perfect scent shouldn&apos;t be a guessing game.
+                With thousands of options out there, it&apos;s easy to feel
+                overwhelmed. That&apos;s why we built a recommendation system
+                powered by real community data and smart algorithms — so you get
+                suggestions tailored to your unique taste. Whether you&apos;re
+                into fresh aquatics, sweet gourmands, or smoky ouds, we&apos;ll
+                help you find your next signature fragrance without the hassle.
               </p>
             </div>
           </div>
