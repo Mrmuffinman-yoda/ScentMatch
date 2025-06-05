@@ -29,7 +29,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         style={{
-          backgroundImage: "url('api/minio/scentmatch/core/tile.png')",
+          backgroundImage: "url('/api/minio/scentmatch/core/tile.png')",
           backgroundSize: "500px auto",
           backgroundAttachment: "fixed",
         }}
