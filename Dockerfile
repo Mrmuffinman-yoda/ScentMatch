@@ -25,6 +25,7 @@ ENV NODE_ENV=production
 
 RUN corepack enable && corepack prepare pnpm@latest --activate
 COPY node_modules ./node_modules
+COPY package.json ./
 COPY public ./public
 COPY .next ./.next
 
