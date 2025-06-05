@@ -6,30 +6,8 @@ import BoldBox from "./components/general/BoldBox";
 
 import PageContainer from "./components/general/PageContainer";
 
-// Define the interface for the API response
-interface ApiResponse {
-  username: string;
-  email: string;
-  image_url: string;
-}
 
 export default function Home() {
-  const [, setData] = useState<ApiResponse | null>(null); // Ignore unused var warning
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch("/api/hello");
-        const result: ApiResponse = await response.json();
-        setData(result);
-      } catch (error) {
-        console.error("Error fetching data from FastAPI:", error);
-      }
-    }
-
-    fetchData();
-  }, []);
-
   return (
     <div>
       <PageContainer>

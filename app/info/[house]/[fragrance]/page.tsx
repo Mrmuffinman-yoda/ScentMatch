@@ -34,8 +34,16 @@ const Page = () => {
           setData(null);
           return;
         }
-        const result: ApiResponse = await response.json();
-        setData(result);
+        const result: ApiResponse | { detail: string } = await response.json();
+        if (
+          typeof result === "object" &&
+          "detail" in result &&
+          result.detail === "Fragrance not found"
+        ) {
+          setData(null);
+          return;
+        }
+        setData(result as ApiResponse);
       } catch (error) {
         setData(null);
         console.error("Error fetching data from FastAPI:", error);
