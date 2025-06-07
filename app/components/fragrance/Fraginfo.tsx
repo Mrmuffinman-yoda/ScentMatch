@@ -6,15 +6,11 @@ interface Accords {
   percent: number; // 0-100
 }
 
-interface ImageList {
-  images: string[];
-}
 interface FragInfoProps {
   name: string;
-  image: string;
   description: string;
   accords?: Accords[];
-  images?: ImageList;
+  images: string[];
 }
 
 // Example notes if not provided
@@ -34,11 +30,12 @@ const FragInfo: React.FC<FragInfoProps> = ({
   const [active, setActive] = useState(0);
 
   useEffect(() => {
+    if (!images || images.length === 0) return;
     const interval = setInterval(() => {
       setActive((prev) => (prev + 1) % images.length);
     }, 4500);
     return () => clearInterval(interval);
-  }, []);
+  }, [images]);
 
   return (
     <div className="w-full max-w-5xl mx-auto flex flex-col md:flex-row gap-6 items-stretch">
