@@ -15,6 +15,20 @@ interface ApiResponse {
   image_url: string;
 }
 
+interface CloneResponse {
+  id: number;
+  name: string;
+  description: string;
+  slug: string;
+  image_url: string;
+}
+
+interface CarouselResponse {
+  id: number;
+  slug: string;
+  image_count: number;
+}
+
 const Page = () => {
   const pathname = usePathname();
 
@@ -25,6 +39,58 @@ const Page = () => {
 
   const slug = `${house}-${fragrance}`;
   const [data, setData] = useState<ApiResponse | null | undefined>(undefined);
+
+  // Carousel images state
+  const [carouselImages, setCarouselImages] = useState<string[] | undefined>(
+    undefined
+  );
+
+  // Fetch carousel images from API
+  useEffect(() => {
+    async function fetchCarouselImages() {
+      setCarouselImages(undefined); // loading state
+      try {
+        const response = await fetch(
+          `/api/fragrance/carousel?fragrance_slug=${slug}`
+        );
+        if (!response.ok) {
+          setCarouselImages([]);
+          return;
+        }
+        const result: CarouselResponse[] = await response.json();
+        if (!result || result.length === 0) {
+          setCarouselImages([]);
+          return;
+        }
+        // Assuming only one entry per slug
+        const imageCount = result[0].image_count;
+        const basePath = `/api/minio/scentmatch/carousel/${result[0].slug}/`;
+        const images = Array.from(
+          { length: imageCount },
+          (_, i) => `${basePath}${i + 1}.webp`
+        );
+        setCarouselImages(images);
+      } catch (error) {
+        setCarouselImages([]);
+        console.error("Error fetching carousel images:", error);
+      }
+    }
+    fetchCarouselImages();
+  }, [slug]);
+
+  // generate imagelist for carousel with the
+  // determined path and count of images
+  // path is `/api/fragrance/carousel?fragrance_slug=${slug}`
+  // and count is the number of images in the carousel
+  // the images are named 1,2,3,4.webp
+
+  // retrieve images list from API
+
+  // Fetch top three clones for this fragrance
+  const [topClones, setTopClones] = useState<
+    CloneResponse[] | null | undefined
+  >(undefined);
+
   // call home
   useEffect(() => {
     async function fetchData() {
@@ -52,6 +118,30 @@ const Page = () => {
     setData(undefined); // set loading state
     fetchData();
   }, [slug]);
+
+  useEffect(() => {
+    async function fetchTopClones(fragranceId: number) {
+      setTopClones(undefined); // loading state
+      try {
+        const response = await fetch(
+          `/api/fragrance/topthree?fragrance_id=${fragranceId}`
+        );
+        if (!response.ok) {
+          setTopClones(null);
+          return;
+        }
+        const result = await response.json();
+        console.debug("Top clones API result:", result); // Debug output
+        setTopClones(result);
+      } catch (error) {
+        setTopClones(null);
+        console.error("Error fetching top clones:", error);
+      }
+    }
+    if (data && data.id) {
+      fetchTopClones(data.id);
+    }
+  }, [data]);
 
   if (data === undefined) {
     return (
@@ -81,13 +171,11 @@ const Page = () => {
 
   return (
     <div>
-      <h1>House: {house}</h1>
-      <h2>Fragrance: {fragrance}</h2>
       <PageContainer>
         <FragInfo
           name={data.name}
           description={data.description}
-          image={data.image_url}
+          images={carouselImages ?? []}
           accords={[
             { name: "Iris", percent: 45 },
             { name: "Amber", percent: 25 },
@@ -102,7 +190,7 @@ const Page = () => {
         <h1 className="text-4xl font-bold mb-2 text-primary text-center">
           Top three clones
         </h1>
-        <TopThree />
+        <TopThree clones={topClones} isLoading={topClones === undefined} />
       </PageContainer>
     </div>
   );

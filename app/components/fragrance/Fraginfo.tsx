@@ -6,19 +6,16 @@ interface Accords {
   percent: number; // 0-100
 }
 
+interface ImageList {
+  images: string[];
+}
 interface FragInfoProps {
   name: string;
   image: string;
   description: string;
   accords?: Accords[];
+  images?: ImageList;
 }
-
-const images = [
-  "https://www.dior.com/dw/image/v2/BGXS_PRD/on/demandware.static/-/Sites-master_dior/default/dw0c433874/Y0479201/Y0479201_F047924709_E01_ZHC.jpg?sw=1280",
-  "https://www.dior.com/dw/image/v2/BGXS_PRD/on/demandware.static/-/Sites-master_dior/default/dw42bfcfbf/Y0479201/Y0479201_F047924709_E02_GHC.jpg?sw=1280",
-  "https://www.dior.com/dw/image/v2/BGXS_PRD/on/demandware.static/-/Sites-master_dior/default/dw80ca6ba1/Y0479201/Y0479201_F047924709_E03_GHC.jpg?sw=1280",
-  "https://www.dior.com/dw/image/v2/BGXS_PRD/on/demandware.static/-/Sites-master_dior/default/dw13e65c65/Y0479201/Y0479201_F047924709_E04_GHC.jpg?sw=1280",
-];
 
 // Example notes if not provided
 const defaultAccords: Accords[] = [
@@ -30,7 +27,7 @@ const defaultAccords: Accords[] = [
 
 const FragInfo: React.FC<FragInfoProps> = ({
   name,
-  // image,
+  images,
   description,
   accords = defaultAccords,
 }) => {
