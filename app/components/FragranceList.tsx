@@ -27,16 +27,18 @@ const FragranceList = () => {
           return;
         }
         // Fetch fragrance details in parallel
+        type TopFragranceId = { fragrance_id?: number; id?: number };
         const details = await Promise.all(
-          ids.map(async (item: any) => {
-            const id = item.fragrance_id || item.id || item;
+          ids.map(async (item: TopFragranceId | number) => {
+            const id =
+              typeof item === "number" ? item : item.fragrance_id ?? item.id;
             const resp = await fetch(`/api/fragrance?fragrance_id=${id}`);
             if (!resp.ok) return null;
             return await resp.json();
           })
         );
         setFragrances(details.filter(Boolean));
-      } catch (e) {
+      } catch {
         setFragrances([]);
       }
     }
@@ -63,8 +65,8 @@ const FragranceList = () => {
                   className="size-10 rounded-box"
                   src={`/api/minio/scentmatch/fragrance-card/${fragrance.slug}/card.jpg`}
                   alt={fragrance.name}
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src =
+                  onError={(event) => {
+                    (event.currentTarget as HTMLImageElement).src =
                       "/api/minio/scentmatch/core/noimg.png";
                   }}
                 />

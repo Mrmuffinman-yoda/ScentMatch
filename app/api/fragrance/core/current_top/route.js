@@ -1,7 +1,7 @@
 // return whats from http://fastapi:8001/fragrance/top-fragrances
 import { NextResponse } from "next/server";
 
-export async function GET(request) {
+export async function GET() {
   const response = await fetch(
     "http://fastapi-server:8001/fragrance/top-fragrances"
   );
