@@ -1,57 +1,80 @@
 import React from "react";
+import { useEffect, useState } from "react";
+interface Fragrance {
+  id: number;
+  name: string;
+  description: string;
+  slug: string;
+  image_url?: string;
+}
 
 const FragranceList = () => {
+  const [fragrances, setFragrances] = useState<Fragrance[] | undefined>(
+    undefined
+  );
+
+  useEffect(() => {
+    async function fetchTopFragrances() {
+      try {
+        const res = await fetch("/api/fragrance/core/current_top");
+        if (!res.ok) {
+          setFragrances([]);
+          return;
+        }
+        const ids = await res.json();
+        if (!Array.isArray(ids) || ids.length === 0) {
+          setFragrances([]);
+          return;
+        }
+        // Fetch fragrance details in parallel
+        const details = await Promise.all(
+          ids.map(async (item: any) => {
+            const id = item.fragrance_id || item.id || item;
+            const resp = await fetch(`/api/fragrance?fragrance_id=${id}`);
+            if (!resp.ok) return null;
+            return await resp.json();
+          })
+        );
+        setFragrances(details.filter(Boolean));
+      } catch (e) {
+        setFragrances([]);
+      }
+    }
+    fetchTopFragrances();
+  }, []);
+
   return (
     <div data-theme="" className="p-4">
       <ul className="list bg-base-100 rounded-box shadow-md">
         <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">
           Most popular fragrances of this week
         </li>
-
-        <li className="list-row">
-          <div>
-            <img
-              className="size-10 rounded-box"
-              src="https://img.daisyui.com/images/profile/demo/1@94.webp"
-            />
-          </div>
-          <div>
-            <div>Turathi Electric</div>
-            <div className="text-xs uppercase font-semibold opacity-60">
-              Afnan
-            </div>
-          </div>
-        </li>
-
-        <li className="list-row justify-center">
-          <div>
-            <img
-              className="size-10 rounded-box"
-              src="https://img.daisyui.com/images/profile/demo/4@94.webp"
-            />
-          </div>
-          <div>
-            <div>Hawas Elixir</div>
-            <div className="text-xs uppercase font-semibold opacity-60">
-              Rasasi
-            </div>
-          </div>
-        </li>
-
-        <li className="list-row">
-          <div>
-            <img
-              className="size-10 rounded-box"
-              src="https://img.daisyui.com/images/profile/demo/3@94.webp"
-            />
-          </div>
-          <div>
-            <div>Art of universe</div>
-            <div className="text-xs uppercase font-semibold opacity-60">
-              Lattafa
-            </div>
-          </div>
-        </li>
+        {fragrances === undefined && (
+          <li className="p-4 text-center">Loading...</li>
+        )}
+        {fragrances && fragrances.length === 0 && (
+          <li className="p-4 text-center">No fragrances found.</li>
+        )}
+        {fragrances &&
+          fragrances.map((fragrance) => (
+            <li className="list-row" key={fragrance.id}>
+              <div>
+                <img
+                  className="size-10 rounded-box"
+                  src={`/api/minio/scentmatch/fragrance-card/${fragrance.slug}/card.jpg`}
+                  alt={fragrance.name}
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src =
+                      "/api/minio/scentmatch/core/noimg.png";
+                  }}
+                />
+              </div>
+              <div>
+                <div>{fragrance.name}</div>
+                {/* TODO: Brand/house can be added here in the future */}
+              </div>
+            </li>
+          ))}
       </ul>
     </div>
   );
