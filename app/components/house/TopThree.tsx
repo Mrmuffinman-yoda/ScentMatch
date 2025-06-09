@@ -2,39 +2,50 @@ import React from "react";
 import FragranceCard from "../general/FragranceCard";
 import { DesignerPill, ExpensivePill } from "./Infopills";
 
-const TopThree = () => {
-  // TODO:Pass house object into this component
-  // TODO: Retrieve top three fragrances from the house object
+interface CloneData {
+  // basically fragrance data
+  id: number;
+  name: string;
+  description: string;
+  slug: string;
+}
 
-  const d = "This is a iris forward fragrance";
+interface Props {
+  clones?: CloneData[] | null;
+  isLoading?: boolean;
+}
+
+const TopThree = ({ clones, isLoading }: Props) => {
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center p-8">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
+  }
+
+  if (!clones || clones.length === 0) {
+    return (
+      <div className="text-center p-8">
+        <p className="text-gray-500">No clones available for this fragrance.</p>
+      </div>
+    );
+  }
   return (
     <div>
       <div className="p-2 flex flex-wrap flex-row gap-4 justify-center">
-        <FragranceCard
-          title="Dior Homme Intense 2025"
-          isNew={true}
-          description={d}
-        >
-          <DesignerPill />
-          <ExpensivePill />
-        </FragranceCard>
-
-        <FragranceCard
-          title="Dior Sauvage Eau de Parfum"
-          isNew={false}
-          description={d}
-        >
-          <DesignerPill />
-          <ExpensivePill />
-        </FragranceCard>
-        <FragranceCard
-          title="Dior Fahrenheit Le Parfum"
-          isNew={false}
-          description={d}
-        >
-          <DesignerPill />
-          <ExpensivePill />
-        </FragranceCard>
+        {clones.slice(0, 3).map((clone) => (
+          <FragranceCard
+            key={clone.id}
+            title={clone.name}
+            isNew={false}
+            description={clone.description}
+            slug={clone.slug}
+          >
+            <DesignerPill />
+            <ExpensivePill />
+          </FragranceCard>
+        ))}
       </div>
     </div>
   );

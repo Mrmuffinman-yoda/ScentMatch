@@ -6,9 +6,16 @@ interface Props {
   description: string;
   isNew: boolean;
   children?: React.ReactNode;
+  slug?: string;
 }
 
-const FragranceCard = ({ title, description, isNew, children }: Props) => {
+const FragranceCard = ({
+  title,
+  description,
+  isNew,
+  children,
+  slug,
+}: Props) => {
   return (
     <motion.div
       whileHover={{
@@ -20,7 +27,10 @@ const FragranceCard = ({ title, description, isNew, children }: Props) => {
       className="card bg-base-100 w-83 shadow-sm cursor-pointer"
     >
       <figure>
-        <img src="/api/minio/scentmatch/core/noimg.png" alt="Shoes" />
+        <img
+          src={`/api/minio/scentmatch/fragrance-card/${slug}/card.jpg`}
+          alt="Shoes"
+        />
       </figure>
       <div className="card-body">
         <h2 className="card-title">
