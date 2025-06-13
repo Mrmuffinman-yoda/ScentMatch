@@ -55,7 +55,7 @@ const Page = () => {
         <HouseHead
           house_name={houseData.name}
           description={houseData.description}
-          logo_url='/api/minio/scentmatch/house/${houseData.slug}/logo.webp'
+          logo_url={`/api/minio/scentmatch/house/${houseData.slug}/logo.webp`}
         >
           <DesignerPill />
           <ExpensivePill />

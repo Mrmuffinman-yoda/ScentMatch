@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "motion/react";
+import Image from "next/image";
 
 interface Accords {
   name: string;
@@ -47,11 +48,15 @@ const FragInfo: React.FC<FragInfoProps> = ({
             style={{ transform: `translateX(-${active * 100}%)` }}
           >
             {images.map((img, idx) => (
-              <img
+              <Image
                 key={idx}
                 src={img}
                 className="w-full h-full flex-shrink-0 object-cover"
                 alt={`Slide ${idx + 1}`}
+                width={800}
+                height={450}
+                priority={idx === 0}
+                unoptimized
               />
             ))}
           </div>

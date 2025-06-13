@@ -2,7 +2,11 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["127.0.0.1"],
+    domains: [
+      "127.0.0.1",
+      "scentmatch.harison.cloud",
+      "harison.cloud"
+    ],
   },
   async headers() {
     return [

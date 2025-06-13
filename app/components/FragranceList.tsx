@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 interface Fragrance {
   id: number;
   name: string;
@@ -61,10 +62,13 @@ const FragranceList = () => {
           fragrances.map((fragrance) => (
             <li className="list-row" key={fragrance.id}>
               <div>
-                <img
+                <Image
                   className="size-10 rounded-box"
                   src={`/api/minio/scentmatch/fragrance-card/${fragrance.slug}/card.webp`}
                   alt={fragrance.name}
+                  width={40}
+                  height={40}
+                  unoptimized
                   onError={(event) => {
                     (event.currentTarget as HTMLImageElement).src =
                       "/api/minio/scentmatch/core/noimg.webp";

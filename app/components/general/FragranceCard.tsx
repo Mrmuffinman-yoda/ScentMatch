@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "motion/react";
+import Image from "next/image";
 
 interface Props {
   title: string;
@@ -27,9 +28,12 @@ const FragranceCard = ({
       className="card bg-base-100 w-83 shadow-sm cursor-pointer"
     >
       <figure>
-        <img
+        <Image
           src={`/api/minio/scentmatch/fragrance-card/${slug}/card.webp`}
-          alt="Shoes"
+          alt={title}
+          width={200}
+          height={200}
+          unoptimized
         />
       </figure>
       <div className="card-body">
