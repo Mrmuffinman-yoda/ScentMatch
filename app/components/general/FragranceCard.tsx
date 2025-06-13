@@ -28,7 +28,7 @@ const FragranceCard = ({
     >
       <figure>
         <img
-          src={`/api/minio/scentmatch/fragrance-card/${slug}/card.jpg`}
+          src={`/api/minio/scentmatch/fragrance-card/${slug}/card.webp`}
           alt="Shoes"
         />
       </figure>

@@ -10,7 +10,7 @@ const Navbar = () => {
             <Link href="/">
               <img
                 className="w-20"
-                src="/api/minio/scentmatch/core/logoWithText.png"
+                src="/api/minio/scentmatch/core/logoWithText.webp"
                 alt="ScentMatch"
               />
             </Link>
@@ -27,7 +27,7 @@ const Navbar = () => {
                 <div className="w-10 rounded-full">
                   <img
                     alt="Tailwind CSS Navbar component"
-                    src="/api/minio/scentmatch/core/noprofile.png"
+                    src="/api/minio/scentmatch/core/noprofile.webp"
                   />
                 </div>
               </div>

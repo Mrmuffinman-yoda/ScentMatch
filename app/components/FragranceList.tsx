@@ -63,11 +63,11 @@ const FragranceList = () => {
               <div>
                 <img
                   className="size-10 rounded-box"
-                  src={`/api/minio/scentmatch/fragrance-card/${fragrance.slug}/card.jpg`}
+                  src={`/api/minio/scentmatch/fragrance-card/${fragrance.slug}/card.webp`}
                   alt={fragrance.name}
                   onError={(event) => {
                     (event.currentTarget as HTMLImageElement).src =
-                      "/api/minio/scentmatch/core/noimg.png";
+                      "/api/minio/scentmatch/core/noimg.webp";
                   }}
                 />
               </div>

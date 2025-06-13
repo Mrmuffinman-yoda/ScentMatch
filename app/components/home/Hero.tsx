@@ -10,6 +10,7 @@ const Hero = () => {
         muted
         playsInline
         className="w-full h-full object-contain"
+        preload="auto"
       ></video>
       <div className="hero-content text-center absolute inset-0 flex items-center justify-center">
         <div className="max-w-md">

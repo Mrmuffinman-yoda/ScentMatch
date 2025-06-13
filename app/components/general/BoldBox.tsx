@@ -25,7 +25,7 @@ const BoldBox = () => {
 
           <div>
             <img
-              src="/api/minio/scentmatch/home/fragranceWalkGreen.png"
+              src="/api/minio/scentmatch/home/fragranceWalkGreen.webp"
               className="rounded"
               alt=""
             />
