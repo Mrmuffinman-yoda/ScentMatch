@@ -15,7 +15,6 @@ interface ApiResponse {
   image_url: string;
 }
 
-
 interface Accord {
   id: number;
   slug: string;
@@ -42,10 +41,10 @@ const Page = () => {
 
   // Extract the dynamic route parameters from the pathname
   const pathSegments = pathname.split("/"); // Split the pathname into segments
-  const house = pathSegments[2]; // Extract the 'house' segment
+  // const house = pathSegments[2]; // Extract the 'house' segment
   const fragrance = pathSegments[3]; // Extract the 'fragrance' segment
 
-  const slug = `${house}-${fragrance}`;
+  const slug = `${fragrance}`;
   const [data, setData] = useState<ApiResponse | null | undefined>(undefined);
   const [accords, setAccords] = useState<Accord[] | undefined>(undefined);
 
