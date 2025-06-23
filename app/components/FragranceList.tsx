@@ -13,6 +13,21 @@ const FragranceList = () => {
   const [fragrances, setFragrances] = useState<Fragrance[] | undefined>(
     undefined
   );
+  const [fragranceUrls, setFragranceUrls] = useState<{ [id: number]: string }>({});
+
+  // Fetch the URL for a fragrance slug, throw or return dummy if not found
+  async function fetchURL(slug: string): Promise<string> {
+    const dummyUrl = "/fragrance/notfound";
+    try {
+      const res = await fetch(`/api/fragrance/url?slug=${slug}`);
+      if (!res.ok) throw new Error("Not found");
+      const data = await res.json();
+      if (!data?.url) throw new Error("No url");
+      return data.url;
+    } catch {
+      return dummyUrl;
+    }
+  }
 
   useEffect(() => {
     async function fetchTopFragrances() {
@@ -38,7 +53,16 @@ const FragranceList = () => {
             return await resp.json();
           })
         );
-        setFragrances(details.filter(Boolean));
+        const filtered = details.filter(Boolean);
+        setFragrances(filtered);
+        // Fetch URLs for each fragrance
+        const urlMap: { [id: number]: string } = {};
+        await Promise.all(
+          filtered.map(async (fragrance: Fragrance) => {
+            urlMap[fragrance.id] = await fetchURL(fragrance.slug);
+          })
+        );
+        setFragranceUrls(urlMap);
       } catch {
         setFragrances([]);
       }
@@ -60,7 +84,14 @@ const FragranceList = () => {
         )}
         {fragrances &&
           fragrances.map((fragrance) => (
-            <li className="list-row" key={fragrance.id}>
+            <li
+              className="list-row cursor-pointer hover:bg-base-200"
+              key={fragrance.id}
+              onClick={() => {
+                const url = fragranceUrls[fragrance.id] || "/fragrance/notfound";
+                window.location.href = url;
+              }}
+            >
               <div>
                 <Image
                   className="size-10 rounded-box"
