@@ -159,7 +159,11 @@ const Page = () => {
         }
         const result = await response.json();
         console.debug("Top clones API result:", result); // Debug output
-        setTopClones(result);
+        if (Array.isArray(result)) {
+          setTopClones(result);
+        } else {
+          setTopClones(null);
+        }
       } catch (error) {
         setTopClones(null);
         console.error("Error fetching top clones:", error);
@@ -215,7 +219,13 @@ const Page = () => {
         <h1 className="text-4xl font-bold mb-2 text-primary text-center">
           Top three clones
         </h1>
-        <TopThree clones={topClones} isLoading={topClones === undefined} />
+        {Array.isArray(topClones) ? (
+          <TopThree clones={topClones} isLoading={false} />
+        ) : (
+          <div className="text-center p-8">
+            <p className="text-gray-500">No clones available for this fragrance.</p>
+          </div>
+        )}
       </PageContainer>
     </div>
   );

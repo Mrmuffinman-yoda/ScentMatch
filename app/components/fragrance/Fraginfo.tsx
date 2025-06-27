@@ -86,7 +86,6 @@ const FragInfo: React.FC<FragInfoProps> = ({
               <div key={accord.name}>
                 <div className="flex justify-between text-xs mb-1">
                   <span>{accord.name}</span>
-                  <span>{accord.percent}%</span>
                 </div>
                 <div className="w-full bg-gray-300 rounded h-3">
                   <motion.div
