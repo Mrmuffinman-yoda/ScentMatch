@@ -16,6 +16,22 @@ COPY . .
 FROM base AS build
 RUN pnpm build
 
+# Development stage: for hot reloading and development
+FROM node:22-alpine AS dev
+WORKDIR /app
+
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile --offline || pnpm install --frozen-lockfile
+
+COPY . .
+
+ENV NODE_ENV=development
+EXPOSE 3000
+
+CMD ["pnpm", "dev"]
+
 # Production stage: minimal runtime image
 FROM node:22-alpine AS prod
 WORKDIR /app
