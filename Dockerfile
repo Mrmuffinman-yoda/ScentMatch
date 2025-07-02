@@ -1,33 +1,33 @@
-# Base - Shared deps
+# Base stage: install dependencies
 FROM node:22-alpine AS base
 WORKDIR /app
 
 RUN corepack enable && corepack prepare pnpm@latest --activate
-COPY node_modules ./node_modules
 
-# Dev Stage
-FROM base AS dev
-ENV NODE_ENV=development
+# Copy only package files to leverage Docker cache for deps
+COPY package.json pnpm-lock.yaml ./
 
+RUN pnpm install --frozen-lockfile
+
+# Copy app source code
 COPY . .
 
-EXPOSE 3000
-CMD ["pnpm", "dev"]
+# Build stage: run Next.js build
+FROM base AS build
+RUN pnpm build
 
-# Build Stage
-
-
-# Prod Stage (lean runtime)
+# Production stage: only runtime files, lean image
 FROM node:22-alpine AS prod
 WORKDIR /app
 
-ENV NODE_ENV=production
-
 RUN corepack enable && corepack prepare pnpm@latest --activate
-COPY node_modules ./node_modules
-COPY package.json ./
-COPY public ./public
-COPY .next ./.next
 
+COPY --from=build /app/package.json ./
+COPY --from=build /app/public ./public
+COPY --from=build /app/.next ./.next
+COPY --from=build /app/node_modules ./node_modules
+
+ENV NODE_ENV=production
 EXPOSE 3000
+
 CMD ["pnpm", "start"]
