@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const BoldBox = () => {
   return (
@@ -24,10 +25,14 @@ const BoldBox = () => {
           </div>
 
           <div>
-            <img
-              src="/api/minio/scentmatch/home/fragranceWalkGreen.png"
+            <Image
+              src="/api/minio/scentmatch/home/fragranceWalkGreen.webp"
               className="rounded"
-              alt=""
+              alt="Fragrance walk illustration"
+              width={400}
+              height={300}
+              unoptimized
+              priority
             />
           </div>
         </div>

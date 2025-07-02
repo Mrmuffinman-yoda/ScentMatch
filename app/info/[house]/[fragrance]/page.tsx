@@ -15,6 +15,13 @@ interface ApiResponse {
   image_url: string;
 }
 
+interface Accord {
+  id: number;
+  slug: string;
+  accord: string;
+  percentage: number;
+}
+
 interface CloneResponse {
   id: number;
   name: string;
@@ -34,11 +41,12 @@ const Page = () => {
 
   // Extract the dynamic route parameters from the pathname
   const pathSegments = pathname.split("/"); // Split the pathname into segments
-  const house = pathSegments[2]; // Extract the 'house' segment
+  // const house = pathSegments[2]; // Extract the 'house' segment
   const fragrance = pathSegments[3]; // Extract the 'fragrance' segment
 
-  const slug = `${house}-${fragrance}`;
+  const slug = `${fragrance}`;
   const [data, setData] = useState<ApiResponse | null | undefined>(undefined);
+  const [accords, setAccords] = useState<Accord[] | undefined>(undefined);
 
   // Carousel images state
   const [carouselImages, setCarouselImages] = useState<string[] | undefined>(
@@ -120,6 +128,25 @@ const Page = () => {
   }, [slug]);
 
   useEffect(() => {
+    async function fetchAccords() {
+      try {
+        setAccords(undefined); // loading state
+        const response = await fetch(`/api/fragrance/accords?slug=${slug}`);
+        if (!response.ok) {
+          setAccords([]);
+          return;
+        }
+        const result: Accord[] = await response.json();
+        setAccords(result);
+      } catch (error) {
+        setAccords([]);
+        console.error("Error fetching accords:", error);
+      }
+    }
+    fetchAccords();
+  }, [slug]);
+
+  useEffect(() => {
     async function fetchTopClones(fragranceId: number) {
       setTopClones(undefined); // loading state
       try {
@@ -132,7 +159,11 @@ const Page = () => {
         }
         const result = await response.json();
         console.debug("Top clones API result:", result); // Debug output
-        setTopClones(result);
+        if (Array.isArray(result)) {
+          setTopClones(result);
+        } else {
+          setTopClones(null);
+        }
       } catch (error) {
         setTopClones(null);
         console.error("Error fetching top clones:", error);
@@ -176,13 +207,11 @@ const Page = () => {
           name={data.name}
           description={data.description}
           images={carouselImages ?? []}
-          accords={[
-            { name: "Iris", percent: 45 },
-            { name: "Amber", percent: 25 },
-            { name: "Vetiver", percent: 15 },
-            { name: "Cedar", percent: 10 },
-            { name: "Lavender", percent: 5 },
-          ]}
+          accords={
+            accords && accords.length > 0
+              ? accords.map((a) => ({ name: a.accord, percent: a.percentage }))
+              : []
+          }
         />
       </PageContainer>
 
@@ -190,7 +219,13 @@ const Page = () => {
         <h1 className="text-4xl font-bold mb-2 text-primary text-center">
           Top three clones
         </h1>
-        <TopThree clones={topClones} isLoading={topClones === undefined} />
+        {Array.isArray(topClones) ? (
+          <TopThree clones={topClones} isLoading={false} />
+        ) : (
+          <div className="text-center p-8">
+            <p className="text-gray-500">No clones available for this fragrance.</p>
+          </div>
+        )}
       </PageContainer>
     </div>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const Navbar = () => {
   return (
@@ -8,10 +9,14 @@ const Navbar = () => {
         <div data-theme="" className="navbar bg-base-100 shadow-sm">
           <div className="flex-1 ">
             <Link href="/">
-              <img
+              <Image
                 className="w-20"
-                src="/api/minio/scentmatch/core/logoWithText.png"
+                src="/api/minio/scentmatch/core/logoWithText.webp"
                 alt="ScentMatch"
+                width={120}
+                height={40}
+                unoptimized
+                priority
               />
             </Link>
           </div>
@@ -21,37 +26,21 @@ const Navbar = () => {
               placeholder="Search"
               className="input input-bordered w-24 md:w-auto"
             />
-            <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
+            {/* TODO: once the user is logged in, change this button to a drop down instead of routing to the login page */}
+            <Link href="/login">
+              <div className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
-                  <img
-                    alt="Tailwind CSS Navbar component"
-                    src="/api/minio/scentmatch/core/noprofile.png"
+                  <Image
+                    alt="User profile"
+                    src="/api/minio/scentmatch/core/noprofile.webp"
+                    width={40}
+                    height={40}
+                    className="w-10 rounded-full"
+                    unoptimized
                   />
                 </div>
               </div>
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-              >
-                <li>
-                  <a className="justify-between">
-                    Profile
-                    <span className="badge">New</span>
-                  </a>
-                </li>
-                <li>
-                  <a>Settings</a>
-                </li>
-                <li>
-                  <a>Logout</a>
-                </li>
-              </ul>
-            </div>
+            </Link>
           </div>
         </div>
       </div>
