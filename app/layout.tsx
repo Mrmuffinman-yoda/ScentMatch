@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "./components/core/Navbar";
 import Footer from "./components/core/Footer";
 
+import { GeistSans } from 'geist/font/sans';
 
 
 export const metadata: Metadata = {
@@ -16,9 +17,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html data-theme="luxury" lang="en">
+    <html data-theme="luxury" lang="en" className={`${GeistSans.className}`}>
       <body
-        className="font-geist-sans font-geist-mono antialiased"
+        className="antialiased"
         style={{
           backgroundImage: "url('/api/minio/scentmatch/core/tile.webp')",
           backgroundSize: "500px auto",

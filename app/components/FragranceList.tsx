@@ -73,8 +73,10 @@ const FragranceList = () => {
   return (
     <div data-theme="" className="p-4">
       <ul className="list bg-base-100 rounded-box shadow-md">
-        <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">
-          Most popular fragrances of this week
+        <li className="p-4 pb-2">
+          <h2 className="text-2xl md:text-3xl font-semibold opacity-80 tracking-wide font-cormorant-garamond">
+            Most popular fragrances of this week
+          </h2>
         </li>
         {fragrances === undefined && (
           <li className="p-4 text-center">Loading...</li>
