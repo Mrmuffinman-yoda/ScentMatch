@@ -9,11 +9,11 @@ export async function GET(request) {
       {
         status: 400,
         headers: { "Content-Type": "application/json" },
-      }
+      },
     );
   }
   const response = await fetch(
-    `http://fastapi-server:8001/fragrance/${fragranceSlug}/carousel`
+    `http://fastapi-server:8001/fragrance/${fragranceSlug}/carousel`,
   );
   const carouselImages = await response.json();
 

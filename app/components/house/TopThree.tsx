@@ -27,18 +27,19 @@ const TopThree = ({ clones, isLoading }: Props) => {
   return (
     <div>
       <div className="p-2 flex flex-wrap flex-row gap-4 justify-center">
-        {clones && clones.slice(0, 3).map((clone) => (
-          <FragranceCard
-            key={clone.id}
-            title={clone.name}
-            isNew={false}
-            description={clone.description}
-            slug={clone.slug}
-          >
-            <DesignerPill />
-            <ExpensivePill />
-          </FragranceCard>
-        ))}
+        {clones &&
+          clones.slice(0, 3).map((clone) => (
+            <FragranceCard
+              key={clone.id}
+              title={clone.name}
+              isNew={false}
+              description={clone.description}
+              slug={clone.slug}
+            >
+              <DesignerPill />
+              <ExpensivePill />
+            </FragranceCard>
+          ))}
       </div>
     </div>
   );

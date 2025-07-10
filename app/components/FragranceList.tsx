@@ -11,9 +11,11 @@ interface Fragrance {
 
 const FragranceList = () => {
   const [fragrances, setFragrances] = useState<Fragrance[] | undefined>(
-    undefined
+    undefined,
   );
-  const [fragranceUrls, setFragranceUrls] = useState<{ [id: number]: string }>({});
+  const [fragranceUrls, setFragranceUrls] = useState<{ [id: number]: string }>(
+    {},
+  );
 
   // Fetch the URL for a fragrance slug, throw or return dummy if not found
   async function fetchURL(slug: string): Promise<string> {
@@ -47,11 +49,11 @@ const FragranceList = () => {
         const details = await Promise.all(
           ids.map(async (item: TopFragranceId | number) => {
             const id =
-              typeof item === "number" ? item : item.fragrance_id ?? item.id;
+              typeof item === "number" ? item : (item.fragrance_id ?? item.id);
             const resp = await fetch(`/api/fragrance?fragrance_id=${id}`);
             if (!resp.ok) return null;
             return await resp.json();
-          })
+          }),
         );
         const filtered = details.filter(Boolean);
         setFragrances(filtered);
@@ -60,7 +62,7 @@ const FragranceList = () => {
         await Promise.all(
           filtered.map(async (fragrance: Fragrance) => {
             urlMap[fragrance.id] = await fetchURL(fragrance.slug);
-          })
+          }),
         );
         setFragranceUrls(urlMap);
       } catch {
@@ -90,7 +92,8 @@ const FragranceList = () => {
               className="list-row cursor-pointer hover:bg-base-200"
               key={fragrance.id}
               onClick={() => {
-                const url = fragranceUrls[fragrance.id] || "/fragrance/notfound";
+                const url =
+                  fragranceUrls[fragrance.id] || "/fragrance/notfound";
                 window.location.href = url;
               }}
             >

@@ -3,8 +3,7 @@ import "./globals.css";
 import Navbar from "./components/core/Navbar";
 import Footer from "./components/core/Footer";
 
-import { GeistSans } from 'geist/font/sans';
-
+import { GeistSans } from "geist/font/sans";
 
 export const metadata: Metadata = {
   title: "ScentMatch",

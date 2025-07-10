@@ -3,7 +3,7 @@ export async function GET(request) {
   const slug = searchParams.get("slug");
 
   const response = await fetch(
-    `http://fastapi-server:8001/fragrance/${slug}/accords`
+    `http://fastapi-server:8001/fragrance/${slug}/accords`,
   );
 
   const accords = await response.json();

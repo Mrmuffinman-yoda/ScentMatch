@@ -5,7 +5,6 @@ import BoldBox from "./components/general/BoldBox";
 
 import PageContainer from "./components/general/PageContainer";
 
-
 export default function Home() {
   return (
     <div>

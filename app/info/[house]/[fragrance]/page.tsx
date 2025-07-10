@@ -50,7 +50,7 @@ const Page = () => {
 
   // Carousel images state
   const [carouselImages, setCarouselImages] = useState<string[] | undefined>(
-    undefined
+    undefined,
   );
 
   // Fetch carousel images from API
@@ -59,7 +59,7 @@ const Page = () => {
       setCarouselImages(undefined); // loading state
       try {
         const response = await fetch(
-          `/api/fragrance/carousel?fragrance_slug=${slug}`
+          `/api/fragrance/carousel?fragrance_slug=${slug}`,
         );
         if (!response.ok) {
           setCarouselImages([]);
@@ -75,7 +75,7 @@ const Page = () => {
         const basePath = `/api/minio/scentmatch/carousel/${result[0].slug}/`;
         const images = Array.from(
           { length: imageCount },
-          (_, i) => `${basePath}${i + 1}.webp`
+          (_, i) => `${basePath}${i + 1}.webp`,
         );
         setCarouselImages(images);
       } catch (error) {
@@ -151,7 +151,7 @@ const Page = () => {
       setTopClones(undefined); // loading state
       try {
         const response = await fetch(
-          `/api/fragrance/topthree?fragrance_id=${fragranceId}`
+          `/api/fragrance/topthree?fragrance_id=${fragranceId}`,
         );
         if (!response.ok) {
           setTopClones(null);
@@ -223,7 +223,9 @@ const Page = () => {
           <TopThree clones={topClones} isLoading={false} />
         ) : (
           <div className="text-center p-8">
-            <p className="text-gray-500">No clones available for this fragrance.</p>
+            <p className="text-gray-500">
+              No clones available for this fragrance.
+            </p>
           </div>
         )}
       </PageContainer>

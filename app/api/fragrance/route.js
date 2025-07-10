@@ -15,7 +15,7 @@ export async function GET(request) {
       {
         status: 400,
         headers: { "Content-Type": "application/json" },
-      }
+      },
     );
   }
 
