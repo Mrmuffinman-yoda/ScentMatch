@@ -1,7 +1,15 @@
+"use client";
+
 import React from "react";
 import PageContainer from "../general/PageContainer";
+import { usePathname } from "next/navigation"; // Import usePathname
 
 const Footer = () => {
+  const pathname = usePathname();
+
+  if (pathname === "/login") {
+    return null;
+  }
   return (
     <div className="pt-5">
       <footer className="footer bg-neutral text-neutral-content p-10">
