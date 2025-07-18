@@ -1,0 +1,9 @@
+repos:
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.0.0
+    hooks:
+      - id: prettier
+        name: Prettier (JS/CSS/JSON/Markdown formatter)
+        entry: npx prettier --write
+        language: node
+        files: \.(js|jsx|ts|tsx|json|css|scss|md)$
