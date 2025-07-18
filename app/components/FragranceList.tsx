@@ -49,7 +49,7 @@ const FragranceList = () => {
         const details = await Promise.all(
           ids.map(async (item: TopFragranceId | number) => {
             const id =
-              typeof item === "number" ? item : (item.fragrance_id ?? item.id);
+              typeof item === "number" ? item : item.fragrance_id ?? item.id;
             const resp = await fetch(`/api/fragrance?fragrance_id=${id}`);
             if (!resp.ok) return null;
             return await resp.json();

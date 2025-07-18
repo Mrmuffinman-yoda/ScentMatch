@@ -30,7 +30,7 @@ export async function POST(request) {
       );
     }
 
-    const { session_token, id, username: userUsername } = data;
+    const { session_token, id, username: userUsername, expiry } = data;
 
     if (!session_token) {
       return NextResponse.json(
@@ -47,7 +47,7 @@ export async function POST(request) {
     response.cookies.set("session_token", session_token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      maxAge: 60 * 60, // 1 hour
+      maxAge: expiry,
       path: "/",
       sameSite: "lax",
     });
