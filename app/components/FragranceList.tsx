@@ -73,7 +73,7 @@ const FragranceList = () => {
   }, []);
 
   return (
-    <div data-theme="" className="p-4">
+    <div className="p-4">
       <ul className="list bg-base-100 rounded-box shadow-md">
         <li className="p-4 pb-2">
           <h2 className="text-2xl md:text-3xl font-semibold opacity-80 tracking-wide font-cormorant-garamond">

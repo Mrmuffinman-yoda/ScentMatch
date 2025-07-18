@@ -15,7 +15,7 @@ const Navbar = () => {
   return (
     <div>
       <div className="w-full max-w-7xl mx-auto">
-        <div data-theme="" className="navbar bg-base-100 shadow-sm">
+        <div className="navbar bg-base-100 shadow-sm">
           <div className="flex-1 ">
             <Link href="/">
               <Image

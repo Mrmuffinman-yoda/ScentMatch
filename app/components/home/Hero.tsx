@@ -2,7 +2,7 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <div data-theme="" className="hero bg-base-200 relative overflow-hidden">
+    <div className="hero bg-base-200 relative overflow-hidden">
       <video
         src="/api/minio-video/scentmatch/myself_hero_video.mp4"
         autoPlay

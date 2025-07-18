@@ -4,7 +4,7 @@ import Image from "next/image";
 const BoldBox = () => {
   return (
     <section>
-      <div data-theme="" className="p-5">
+      <div className="p-5">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:items-center md:gap-8">
           <div>
             <div className="max-w-lg md:max-w-none">
