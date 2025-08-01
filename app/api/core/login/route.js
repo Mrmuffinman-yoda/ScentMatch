@@ -3,11 +3,11 @@ import { NextResponse } from "next/server";
 
 export async function POST(request) {
   try {
-    const { username, password } = await request.json();
+    const { email, password } = await request.json();
 
-    if (!username || !password) {
+    if (!email || !password) {
       return NextResponse.json(
-        { detail: "Username and password are required" },
+        { detail: "Email and password are both required" },
         { status: 400 },
       );
     }
@@ -17,7 +17,9 @@ export async function POST(request) {
       {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({ username, password }).toString(),
+        body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(
+          password,
+        )}`,
       },
     );
 

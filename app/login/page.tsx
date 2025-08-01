@@ -10,12 +10,12 @@ interface LoginResponse {
 }
 
 interface LoginInput {
-  username: string;
+  email: string;
   password: string;
 }
 
 const Page = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState<string | null>(null); // To display login errors
   const [isLoggingIn, setIsLoggingIn] = useState(false); // To prevent multiple login attempts
@@ -31,14 +31,14 @@ const Page = () => {
     e.preventDefault();
     setLoginError(null); // Clear previous errors
 
-    if (!username || !password) {
-      setLoginError("Please enter both username and password.");
+    if (!email || !password) {
+      setLoginError("Please enter both email and password.");
       return;
     }
 
     setIsLoggingIn(true); // Set loading state
     const loginData: LoginInput = {
-      username: username,
+      email: email,
       password: password,
     };
 
@@ -50,6 +50,7 @@ const Page = () => {
         },
         body: JSON.stringify(loginData),
       });
+      console.log("Login request sent:", loginData);
 
       if (!response.ok) {
         console.error("Login failed with status:", response.status);
@@ -94,8 +95,8 @@ const Page = () => {
             type="text"
             placeholder="email"
             className="input input-bordered w-full max-w-xs"
-            onChange={(e) => handleVarChange(e, setUsername)}
-            value={username}
+            onChange={(e) => handleVarChange(e, setEmail)}
+            value={email}
           />
         </div>
 
