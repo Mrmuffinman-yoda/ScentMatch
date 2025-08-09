@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "./components/core/Navbar";
+import NavbarWrapper from "./components/wrappers/NavbarWrapper";
 import Footer from "./components/core/Footer";
 
 import { GeistSans } from "geist/font/sans";
@@ -25,7 +25,7 @@ export default function RootLayout({
           backgroundAttachment: "fixed",
         }}
       >
-        <Navbar />
+        <NavbarWrapper />
         {children}
         <Footer />
       </body>
